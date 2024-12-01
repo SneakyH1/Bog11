@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - AimaneBlog</title>
+  <link rel="stylesheet" th:href="@{/admin.css}">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/posts">Manage Posts</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<<form th:action="@{/admin/posts}" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+  </div>
+  <div class="form-group">
+    <label for="content">Content:</label>
+    <textarea id="content" name="content" required></textarea>
+  </div>
+  <div class="form-group">
+    <label for="postImg">Post Image:</label>
+    <input type="file" id="postImg" name="postImg" accept="image/*">
+  </div>
+  <div>
+    <!-- Conditionally include userId if authenticated -->
+    <input type="hidden" name="userId" th:if="${#authentication.principal != null}" th:value="${#authentication.principal.id}">
+  </div>
+  <button type="submit" class="btn btn-primary">Create Post</button>
+</form>
+
+
+<footer>
+  <div class="container">
+    <p>&copy; 2024 AimaneBlog. All Rights Reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

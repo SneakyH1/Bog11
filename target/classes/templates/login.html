@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - AimaneBlog</title>
+    <link rel="stylesheet" th:href="@{/auth.css}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Login to AimaneBlog</h1>
+        <nav>
+            <ul>
+                <li><a th:href="@{/home}">Home</a></li> <!-- Live link to Home -->
+                <li><a th:href="@{/register}">Sign Up</a></li> <!-- Live link to Register -->
+                <li><a href="#">About</a></li> <!-- Static link, not dynamic -->
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="content">
+        <form action="/login" method="post">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Log In</button>
+
+            <!-- Show error message if login fails -->
+            <div th:if="${error}" class="error-message">
+                <p th:text="${error}"></p>
+            </div>
+        </form>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 AimaneBlog. All Rights Reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

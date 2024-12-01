@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+  <title>AimaneBlog - Home</title>
+  <link rel="stylesheet" th:href="@{/home.css}">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Welcome to AimaneBlog</h1>
+    <nav>
+      <ul>
+        <li><a th:href="@{/home}">Home</a></li>
+        <li><a th:href="@{/users}">Users</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+
+    <!-- Login and Sign Up links in the top-right -->
+    <div class="auth-links">
+      <a th:href="@{/login}" class="auth-link">Log In</a>
+      <a th:href="@{/register}" class="auth-link">Sign Up</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="content">
+    <h2>Your One-stop Blog Platform</h2>
+    <p>Explore various articles, user profiles, and more.</p>
+
+    <!-- Displaying Posts -->
+    <div class="posts-container">
+      <div th:each="post : ${posts}" class="post">
+        <div class="post-header">
+          <h3 th:text="${post.title}"></h3>
+          <p><small>Posted by <span th:text="${post.user.username}"></span> on <span th:text="${post.creationDate}"></span></small></p>
+        </div>
+        <div class="post-content">
+          <p th:text="${post.content}"></p>
+
+          <!-- Check if the post has an image and display it -->
+          <div th:if="${post.image != null}">
+            <img th:src="@{${post.image}}" alt="Post Image" class="post-image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2024 AimaneBlog. All Rights Reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
